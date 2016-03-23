@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    statistics for day {{day_name}}
+    <small>day hours total packets statistics</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">statistics for day {{day_name}}</a></li>
+  </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">day " {{day_name}}" hours and it's total packets counts</h3>
+    </div>
+    <div class="box-body">
+      <div class="chart">
+        <canvas id="canvas-radar" style="height:400px;"></canvas>
+      </div>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+</section>
+<script src="{% static 'Chart.js' %}"></script>
+<script>
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+	x_axis = [],y_axis = []
+	{% for hour in hours_list %}
+			x_axis.push('{{hour.hour_name}}')
+			y_axis.push('{{hour.total_count}}')
+	{% endfor %}
+
+	var lineChartData = {
+		labels : x_axis,
+		datasets : [
+		{
+			fillColor : getRandomColor(),
+			strokeColor : "rgba(220,220,220,0.8)",
+			highlightFill: getRandomColor(),
+			highlightStroke: "rgba(220,220,220,1)",
+			data : y_axis
+		}
+		]
+
+	}
+
+	var polarData = [];
+
+	for (i = 0; i < x_axis.length; i++) {
+	    polarData.push({
+			value: y_axis[i],
+			color:getRandomColor(),
+			highlight: getRandomColor(),
+			label: x_axis[i]
+		});
+	}
+
+	window.onload = function(){
+		var ctx = document.getElementById("canvas-radar").getContext("2d");
+		window.myLine = new Chart(ctx).Line(lineChartData, {
+			responsive: true
+		});
+
+	}
+
+
+</script>
+{% endblock %}
