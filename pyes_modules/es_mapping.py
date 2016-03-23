@@ -5,7 +5,6 @@
 import elasticsearch
 
 es = elasticsearch.Elasticsearch()
-
 index_name = "my_index"
 type_name = "my_type"
 
