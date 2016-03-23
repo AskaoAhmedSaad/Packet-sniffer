@@ -1,0 +1,128 @@
+{% extends 'layout.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Multi param search
+      <small>search in elasticsearch packet documents with multi param</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">multi param search</li>
+    </ol>
+  </section>
+  <!-- Main content -->
+  <section class="content">
+
+   <div class="box box-default">
+     <div class="box-body">
+       <form class="form-inline" role="form" method="post">
+         {% csrf_token %}
+         <div class='row'>
+           <div class="col-md-3">
+             <label for="searchterm">version :</label><br>
+             <input type="text" class="form-control" id="id_version" name="version">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">ip header length :</label>
+             <input type="text" class="form-control" id="id_ip_header_length" name="ip_header_length">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">ttl :</label><br>
+             <input type="text" class="form-control" id="id_ttl" name="ttl">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">protocol :</label>
+             <input type="text" class="form-control" id="id_protocol" name="protocol">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">source address :</label>
+             <input type="text" class="form-control" id="id_source_address" name="source_address">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">destination address :</label>
+             <input type="text" class="form-control" id="id_destination_address" name="destination_address">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">source port :</label>
+             <input type="text" class="form-control" id="id_source_port" name="source_port">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">dest port :</label>
+             <input type="text" class="form-control" id="id_dest_port" name="dest_port">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">sequence number :</label>
+             <input type="text" class="form-control" id="id_sequence_number" name="sequence_number">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">acknowledgement :</label>
+             <input type="text" class="form-control" id="id_acknowledgement" name="acknowledgement">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">tcp header length :</label>
+             <input type="text" class="form-control" id="id_tcp_header_length" name="tcp_header_length">
+           </div>
+           <div class="col-md-3">
+             <label for="searchterm">data :</label><br>
+             <input type="text" class="form-control" id="id_data" name="data">
+           </div>
+         <div class="col-md-3">
+           <label for="searchterm">datetime :</label>
+           <input type="text" class="form-control" id="id_datetime" name="datetime">
+         </div>
+         <div class="col-md-3">
+           <br>
+           <button type="submit" class="btn btn-success pull-right">Search</button>
+         </div>
+       </div>
+      </form>
+     </div><!-- /.box-body -->
+   </div><!-- /.box -->
+
+<!-- show the results -->
+{% if log_results != None %}
+<table class="table table-striped">
+ <thead>
+   <tr>
+     <th>version</th>
+     <th>ip header length</th>
+     <th>ttl</th>
+     <th>protocol</th>
+     <th>source address</th>
+     <th>destination address</th>
+     <th>source port</th>
+     <th>dest port</th>
+     <th>sequence number</th>
+     <th>acknowledgement</th>
+     <th>tcp header length</th>
+     <th>data</th>
+     <th>datetime</th>
+   </tr>
+ </thead>
+ <tbody>
+   {% for doc in log_results %}
+   <tr>
+     <td>{{doc.version}}</td>
+     <td>{{doc.ip_header_length}}</td>
+     <td>{{doc.ttl}}</td>
+     <td>{{doc.protocol}}</td>
+     <td>{{doc.source_address}}</td>
+     <td>{{doc.destination_address}}</td>
+     <td>{{doc.source_port}}</td>
+     <td>{{doc.dest_port}}</td>
+     <td>{{doc.sequence_number}}</td>
+     <td>{{doc.acknowledgement}}</td>
+     <td>{{doc.tcp_header_length}}</td>
+     <td>{{doc.data}}</td>
+     <td>{{doc.datetime}}</td>
+   </tr>
+   {% endfor %}
+ </tbody>
+</table>
+{% endif %}
+<!-- end of showing the results -->
+</section>
+{% endblock %}
