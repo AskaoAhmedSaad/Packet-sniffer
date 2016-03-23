@@ -21,3 +21,5 @@ django web application sniff network packets over tcp protocol, log in elasticse
 <br>
 - you can run packet sniffer and logging script separetly:<br>
 `sudo python packet_sniffer.py`
+
+![print screen](https://www.mediafire.com/convkey/8a67/sub8ju81bwp8y4o6g.jpg)
