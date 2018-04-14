@@ -4,9 +4,9 @@ django web application sniff network packets over tcp protocol, log in elasticse
 
 
 **requirements**<br>
-- django 1.9
+- django 1.11.12
 - pyes python models
-- elasticsearch
+- elasticsearch-6.2.3
 
 
 **Running the application**<br><br>
