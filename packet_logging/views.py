@@ -12,18 +12,18 @@ import subprocess
 from packet_sniffer_log_in_es.settings import index_name , type_name
 
 
+'''
+    start and stop packet sniffing, call packet_sniffer script that
+    sniffs network packets and logs it in elasticsearch documents
+'''
 def packet_sniffer_logger(request):
-    '''
-        start and stop packet sniffing, call packet_sniffer script that
-        sniffs network packets and logs it in elasticsearch documents
-    '''
     return render(request, 'packet_sniffer_logger.html')
 
 
+'''
+    search in elasticsearch packet documents with single param
+'''
 def single_param_search(request):
-    '''
-        search in elasticsearch packet documents with single param
-    '''
     log_results = None
     es = ES() # create elastic seach object
     if request.method == 'POST': # if the search form is submitted
@@ -37,10 +37,10 @@ def single_param_search(request):
     return render(request, 'single_param_search.html',{'log_results':log_results})
 
 
+'''
+    search in elasticsearch packet documents with multi param
+'''
 def multi_param_search(request):
-    '''
-        search in elasticsearch packet documents with multi param
-    '''
     log_results = None
     es = ES() # create elastic seach object
     if request.method == 'POST': # if the search form is submitted
@@ -62,10 +62,10 @@ def multi_param_search(request):
     return render(request, 'multi_param_search.html',{'log_results':log_results})
 
 
+'''
+    start packet_sniffer script
+'''
 def start_sniffer(request):
-    '''
-        start packet_sniffer script
-    '''
     # start packet_sniffer script as system proccess
     proc = subprocess.Popen(['python', 'packet_sniffer.py'], stdout=subprocess.PIPE,
                        shell=False, preexec_fn=os.setsid)
@@ -75,10 +75,10 @@ def start_sniffer(request):
     return HttpResponse('startted')
 
 
+'''
+    stop packet_sniffer script
+'''
 def stop_sniffer(request):
-    '''
-        stop packet_sniffer script
-    '''
     # if the process id pressent as session variable kill this process
     if 'PID' in request.session:
         print request.session['PID']

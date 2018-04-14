@@ -14,19 +14,19 @@ es.cluster.health(wait_for_status="yellow") #
 
 # add mapping
 es.indices.put_mapping(index=index_name, doc_type=type_name, body={"properties": {
-    "version": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "ip_header_length": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "ttl": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "protocol": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "source_address": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "destination_address": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "source_port": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "dest_port": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "sequence_number": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "acknowledgement": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "tcp_header_length": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "data": {"index": "analyzed", "type": "string", "store": "yes", "term_vector": "with_positions_offsets"},
-    "datetime": {"index": "analyzed", "type": "date", "store": "yes"},
+    "version": {"type": "text", "fielddata": "true"},
+    "ip_header_length": {"type": "text", "fielddata": "true"},
+    "ttl": {"type": "text", "fielddata": "true"},
+    "protocol": {"type": "text", "fielddata": "true"},
+    "source_address": {"type": "text", "fielddata": "true"},
+    "destination_address": {"type": "text", "fielddata": "true"},
+    "source_port": {"type": "text", "fielddata": "true"},
+    "dest_port": {"type": "text", "fielddata": "true"},
+    "sequence_number": {"type": "text", "fielddata": "true"},
+    "acknowledgement": {"type": "text", "fielddata": "true"},
+    "tcp_header_length": {"type": "text", "fielddata": "true"},
+    "data": {"type": "text", "fielddata": "true"},
+    "datetime": {"type": "date"},
     }})
 
 mappings = es.indices.get_mapping(index_name, type_name)

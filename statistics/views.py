@@ -12,10 +12,10 @@ import subprocess
 from packet_sniffer_log_in_es.settings import index_name , type_name
 
 
+'''
+    get all destination addresses to get statistics of it's packets
+'''
 def destination_addresses_statistics(request):
-    '''
-        get all destination addresses to get statistics of it's packets
-    '''
     # create elastic seach object
     es = elasticsearch.Elasticsearch()
     # get search results with aggregations in destination address field to get
@@ -34,10 +34,10 @@ def destination_addresses_statistics(request):
     return render(request, 'destination_addresses_statistics.html',{'log_results':log_results})
 
 
+'''
+    get all source addresses to get statistics of it's packets
+'''
 def source_addresses_statistics(request):
-    '''
-        get all source addresses to get statistics of it's packets
-    '''
      # create elastic seach object
     es = elasticsearch.Elasticsearch()
     # get search results with aggregations in source address field to get
@@ -56,10 +56,10 @@ def source_addresses_statistics(request):
     return render(request, 'source_addresses_statistics.html',{'log_results':log_results})
 
 
+'''
+    get days that have packets
+'''
 def days_statistics(request):
-    '''
-        get days that have packets
-    '''
     # get search results with aggregations in datetime field to get
     # days that have packets and it's total packets count
     es = elasticsearch.Elasticsearch() # create elastic seach object
@@ -80,10 +80,10 @@ def days_statistics(request):
     return render(request, 'days_statistics.html',{'days_list':days_list})
 
 
+'''
+    view total packets count for certain day
+'''
 def veiw_day_statistics(request, day):
-    '''
-        view total packets count for certain day
-    '''
     day_name = day.replace('_','-') #convert the day string format
     es = elasticsearch.Elasticsearch() # create elastic seach object
     # get search results with aggregations in datetime field with days to get
