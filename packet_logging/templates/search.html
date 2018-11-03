@@ -84,7 +84,7 @@
    </div><!-- /.box -->
 
 <!-- show the results -->
-{% if log_results.hits.hits != None %}
+{% if log_results != None %}
 <table class="table table-striped">
  <thead>
    <tr>
@@ -104,23 +104,24 @@
    </tr>
  </thead>
  <tbody>
-   {% for doc in log_results.hits.hits %}
-   {{ doc|get:"_source" }}<br>
-   <tr>
-     <td>{{doc.version}}</td>
-     <td>{{doc.ip_header_length}}</td>
-     <td>{{doc.ttl}}</td>
-     <td>{{doc.protocol}}</td>
-     <td>{{doc.source_address}}</td>
-     <td>{{doc.destination_address}}</td>
-     <td>{{doc.source_port}}</td>
-     <td>{{doc.dest_port}}</td>
-     <td>{{doc.sequence_number}}</td>
-     <td>{{doc.acknowledgement}}</td>
-     <td>{{doc.tcp_header_length}}</td>
-     <td>{{doc.data}}</td>
-     <td>{{doc.datetime}}</td>
-   </tr>
+   {% for doc in log_results %}
+     {% with doc|get:"_source" as packet%}<br>
+       <tr>
+         <td>{{packet.version}}</td>
+         <td>{{packet.ip_header_length}}</td>
+         <td>{{packet.ttl}}</td>
+         <td>{{packet.protocol}}</td>
+         <td>{{packet.source_address}}</td>
+         <td>{{packet.destination_address}}</td>
+         <td>{{packet.source_port}}</td>
+         <td>{{packet.dest_port}}</td>
+         <td>{{packet.sequence_number}}</td>
+         <td>{{packet.acknowledgement}}</td>
+         <td>{{packet.tcp_header_length}}</td>
+         <td>{{packet.data}}</td>
+         <td>{{packet.datetime}}</td>
+       </tr>
+     {% endwith %}
    {% endfor %}
  </tbody>
 </table>

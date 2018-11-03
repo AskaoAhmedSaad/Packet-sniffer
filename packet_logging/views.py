@@ -32,12 +32,12 @@ def search(request):
         if len(filters_list) != 0: # if there is filter params  get the results
             orq = ANDFilter(filters_list)
             q = FilteredQuery(MatchAllQuery(), orq)
-            log_results = es.search(index=index_name, body={"query": q})
+            data = es.search(index=index_name, body={"query": q})
         else:
-            log_results = None
+            data = None
     elif request.method == 'GET': # get all packet when get the search page
-        log_results = es.search(index=index_name, body={"query": {"match_all": {}}})
-    return render(request, 'search.html',{'log_results':log_results})
+        data = es.search(index=index_name, body={"query": {"match_all": {}}})
+    return render(request, 'search.html',{'log_results':data['hits']['hits']})
 
 
 '''
