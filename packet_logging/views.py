@@ -2,10 +2,7 @@
 # Auther: Askao Ahmed Saad
 from django.shortcuts import render
 from django.http import HttpResponse
-from pyes import ES
-import elasticsearch
-from pyes.query import *
-from pyes.filters import *
+from elasticsearch import Elasticsearch
 import os
 import signal
 import subprocess
@@ -19,30 +16,11 @@ from packet_sniffer_log_in_es.settings import index_name , type_name
 def packet_sniffer_logger(request):
     return render(request, 'packet_sniffer_logger.html')
 
-
-'''
-    search in elasticsearch packet documents with single param
-'''
-def single_param_search(request):
-    log_results = None
-    es = ES() # create elastic seach object
-    if request.method == 'POST': # if the search form is submitted
-        # filter with search param and search tearm
-        q1 = TermFilter(request.POST.get('searchby'), request.POST.get('searchterm'))
-        orq = ORFilter([q1])
-        q = FilteredQuery(MatchAllQuery(), orq)
-        log_results = es.search(q, indices=index_name, doc_types=type_name) # get the filtered data from elasticsearch
-    elif request.method == 'GET': # get all packet when get the search page
-        log_results = es.search(MatchAllQuery(), indices=index_name, doc_types=type_name)
-    return render(request, 'single_param_search.html',{'log_results':log_results})
-
-
 '''
     search in elasticsearch packet documents with multi param
 '''
-def multi_param_search(request):
-    log_results = None
-    es = ES() # create elastic seach object
+def search(request):
+    es = Elasticsearch()
     if request.method == 'POST': # if the search form is submitted
         filters_list = []
         # loop on each search param and check if it has value to add it to filter list
@@ -54,12 +32,12 @@ def multi_param_search(request):
         if len(filters_list) != 0: # if there is filter params  get the results
             orq = ANDFilter(filters_list)
             q = FilteredQuery(MatchAllQuery(), orq)
-            log_results = es.search(q, indices=index_name, doc_types=type_name)
+            log_results = es.search(index=index_name, body={"query": q})
         else:
             log_results = None
     elif request.method == 'GET': # get all packet when get the search page
-        log_results = es.search(MatchAllQuery(), indices=index_name, doc_types=type_name)
-    return render(request, 'multi_param_search.html',{'log_results':log_results})
+        log_results = es.search(index=index_name, body={"query": {"match_all": {}}})
+    return render(request, 'search.html',{'log_results':log_results})
 
 
 '''

@@ -2,10 +2,7 @@
 # Auther: Askao Ahmed Saad
 from django.shortcuts import render
 from django.http import HttpResponse
-from pyes import ES
 import elasticsearch
-from pyes.query import *
-from pyes.filters import *
 import os
 import signal
 import subprocess

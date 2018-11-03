@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load staticfiles %}
+{% load packet_logging_extras %}
 {% block content %}
 
 <!-- Content Header (Page header) -->
@@ -83,7 +84,7 @@
    </div><!-- /.box -->
 
 <!-- show the results -->
-{% if log_results != None %}
+{% if log_results.hits.hits != None %}
 <table class="table table-striped">
  <thead>
    <tr>
@@ -103,7 +104,8 @@
    </tr>
  </thead>
  <tbody>
-   {% for doc in log_results %}
+   {% for doc in log_results.hits.hits %}
+   {{ doc|get:"_source" }}<br>
    <tr>
      <td>{{doc.version}}</td>
      <td>{{doc.ip_header_length}}</td>

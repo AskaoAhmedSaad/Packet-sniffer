@@ -66,6 +66,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'packet_logging_extras': 'packet_logging.templatetags.packet_logging_extras',
+            }
         },
     },
 ]
