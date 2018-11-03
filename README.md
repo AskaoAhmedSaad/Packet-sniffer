@@ -1,12 +1,12 @@
-# Packet sniffer log in elasticsearch
+# Packet sniffer
 
 django web application sniff network packets over tcp protocol, log in elasticsearch index, single and multi params search for packets, statistics and charts for packets
 
 
 **requirements**<br>
-- django 1.9
+- django 1.11.12
 - pyes python models
-- elasticsearch
+- elasticsearch-6.2.3
 
 
 **Running the application**<br><br>
@@ -22,4 +22,5 @@ django web application sniff network packets over tcp protocol, log in elasticse
 - you can run packet sniffer and logging script separetly:<br>
 `sudo python packet_sniffer.py`
 
-![print screen](https://www.mediafire.com/convkey/8a67/sub8ju81bwp8y4o6g.jpg)
+
+  ![print screen](https://www.mediafire.com/convkey/8a67/sub8ju81bwp8y4o6g.jpg)
