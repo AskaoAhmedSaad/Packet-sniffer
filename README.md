@@ -1,4 +1,4 @@
-# Packet sniffer log in elasticsearch
+# Packet sniffer
 
 django web application sniff network packets over tcp protocol, log in elasticsearch index, single and multi params search for packets, statistics and charts for packets
 
