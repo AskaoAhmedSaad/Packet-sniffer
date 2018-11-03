@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class PacketLoggingConfig(AppConfig):
-    name = 'packet_logging'
+    name = 'packets'

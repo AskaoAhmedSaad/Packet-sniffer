@@ -20,6 +20,6 @@ import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^',include('packet_logging.urls')),
+    url(r'^',include('packets.urls')),
     url(r'^statistics/',include('statistics.urls')),
 ]
