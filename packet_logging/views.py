@@ -34,7 +34,8 @@ def search(request):
             data = None
     elif request.method == 'GET': # get all packet when get the search page
         data = es.search(index=index_name, doc_type=type_name, body={"query": {"match_all": {}}})
-    return render(request, 'search.html',{'log_results':data['hits']['hits']})
+    log_results = data['hits']['hits'] if data is not None else None
+    return render(request, 'search.html',{'log_results':log_results})
 
 
 '''
