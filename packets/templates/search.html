@@ -107,7 +107,7 @@
    {% for doc in log_results %}
      {% with doc|get:"_source" as packet%}<br>
        <tr>
-         <td>{{packet.version}}</td>
+         <td>{{packet}}</td>
          <td>{{packet.ip_header_length}}</td>
          <td>{{packet.ttl}}</td>
          <td>{{packet.protocol}}</td>
