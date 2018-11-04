@@ -8,7 +8,7 @@ import datetime
 
 # create socket
 try:
-    s = socket.socket(socket.AF_INET6, socket.SOCK_RAW, socket.IPPROTO_IP)
+    s = socket.socket(socket.AF_INET6, socket.SOCK_RAW, socket.IPPROTO_TCP)
 except socket.error , msg:
     print 'Socket could not be created. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
     sys.exit()

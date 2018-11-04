@@ -23,56 +23,43 @@
          {% csrf_token %}
          <div class='row'>
            <div class="col-md-3">
-             <label for="searchterm">version :</label><br>
-             <input type="text" class="form-control" id="id_version" name="version">
+             <input type="text" class="form-control" id="id_version" name="version" placeholder="version">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">ip header length :</label>
-             <input type="text" class="form-control" id="id_ip_header_length" name="ip_header_length">
+             <input type="text" class="form-control" id="id_ip_header_length" name="ip_header_length" placeholder="ip header length">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">ttl :</label><br>
-             <input type="text" class="form-control" id="id_ttl" name="ttl">
+             <input type="text" class="form-control" id="id_ttl" name="ttl" placeholder="ttl">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">protocol :</label>
-             <input type="text" class="form-control" id="id_protocol" name="protocol">
+             <input type="text" class="form-control" id="id_protocol" name="protocol" placeholder="protocol">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">source address :</label>
-             <input type="text" class="form-control" id="id_source_address" name="source_address">
+             <input type="text" class="form-control" id="id_source_address" name="source_address" placeholder="source address">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">destination address :</label>
-             <input type="text" class="form-control" id="id_destination_address" name="destination_address">
+             <input type="text" class="form-control" id="id_destination_address" name="destination_address" placeholder="destination address">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">source port :</label>
-             <input type="text" class="form-control" id="id_source_port" name="source_port">
+             <input type="text" class="form-control" id="id_source_port" name="source_port" placeholder="source port">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">dest port :</label>
-             <input type="text" class="form-control" id="id_dest_port" name="dest_port">
+             <input type="text" class="form-control" id="id_dest_port" name="dest_port" placeholder="dest port">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">sequence number :</label>
-             <input type="text" class="form-control" id="id_sequence_number" name="sequence_number">
+             <input type="text" class="form-control" id="id_sequence_number" name="sequence_number" placeholder="sequence number">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">acknowledgement :</label>
-             <input type="text" class="form-control" id="id_acknowledgement" name="acknowledgement">
+             <input type="text" class="form-control" id="id_acknowledgement" name="acknowledgement" placeholder="acknowledgement">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">tcp header length :</label>
-             <input type="text" class="form-control" id="id_tcp_header_length" name="tcp_header_length">
+             <input type="text" class="form-control" id="id_tcp_header_length" name="tcp_header_length" placeholder="tcp header length">
            </div>
            <div class="col-md-3">
-             <label for="searchterm">data :</label><br>
-             <input type="text" class="form-control" id="id_data" name="data">
+             <input type="text" class="form-control" id="id_data" name="data" placeholder="data">
            </div>
          <div class="col-md-3">
-           <label for="searchterm">datetime :</label>
-           <input type="text" class="form-control" id="id_datetime" name="datetime">
+           <input type="text" class="form-control" id="id_datetime" name="datetime" placeholder="datetime">
          </div>
          <div class="col-md-3">
            <br>
@@ -107,7 +94,7 @@
    {% for doc in log_results %}
      {% with doc|get:"_source" as packet%}<br>
        <tr>
-         <td>{{packet}}</td>
+         <td>{{packet.version}}</td>
          <td>{{packet.ip_header_length}}</td>
          <td>{{packet.ttl}}</td>
          <td>{{packet.protocol}}</td>
